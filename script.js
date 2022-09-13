@@ -20,5 +20,13 @@ const LinkedList = function(){
             currentElement.next = Node(value);
         }
     }
-    return {getHead, append}
+    function prepend(value){
+        if(head == null){
+            head = Node(value);
+        }
+        else{
+            head = Node(value, head);
+        }
+    }
+    return {getHead, append, prepend}
 }

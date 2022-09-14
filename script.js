@@ -16,8 +16,12 @@ const LinkedList = function(){
         return size;
     }
     function append(value){
-        if(head == null){
+        if(value == undefined){
+            return
+        }
+        if(size == 0){
             head = Node(value);
+            tail = head;
         }
         else{
             let currentElement = head;
@@ -30,13 +34,43 @@ const LinkedList = function(){
         size++;
     }
     function prepend(value){
-        if(head == null){
+        if(value == undefined){
+            return
+        }
+        if(size == 0){
             head = Node(value);
+            tail = head;
         }
         else{
             head = Node(value, head);
         }
         size++;
+    }
+    function pop(){
+        let poppedElement = undefined;
+        if(size == 0){
+            return poppedElement;
+        }
+        else if(size == 1){
+            poppedElement = getElementByIndex(1);
+            head = null;
+            tail = null;
+            size--;
+            return poppedElement;
+        }
+        else{
+            let currentElement = head;
+            let successiveElement = currentElement.next;
+            while(successiveElement.next != null){
+                currentElement = currentElement.next;
+                successiveElement = successiveElement.next;
+            }
+            poppedElement = successiveElement;
+            currentElement.next = null;
+            tail = currentElement;
+            size--;
+            return poppedElement;
+        }
     }
     function getElementByIndex(index){
         if((index>size)||(index<1)){
@@ -62,5 +96,8 @@ const LinkedList = function(){
             return currentElement;
         }
     }
-    return {getHead, getTail, getSize, append, prepend, getElementByIndex}
+    function contains(value){
+        
+    }
+    return {getHead, getTail, getSize, append, prepend, pop, getElementByIndex}
 }

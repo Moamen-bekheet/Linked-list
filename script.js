@@ -120,5 +120,45 @@ const LinkedList = function(){
             }
         }
     }
-    return {getHead, getTail, getSize, append, prepend, pop, contains, getElementByIndex}
+    function find(value){
+        if(size==0){
+            return null;
+        }
+        else{
+            if(tail.value === value){
+                return size;
+            }
+            else{
+                let currentElement = head;
+                let currentIndex = 1;
+                while(true){
+                    if(currentElement.value === value){
+                        return currentIndex;
+                    }
+                    else{
+                        currentIndex++;
+                        currentElement = currentElement.next;
+                        if(currentElement === null){
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function toString(){
+        if(size==0){
+            return null;
+        }
+        else{
+            stringifiedListValues = '';
+            let currentElement = head;
+            for(let currentIndex=1; currentIndex<=size; currentIndex++){
+                stringifiedListValues += `( ${currentElement.value} ) => `;
+                currentElement = currentElement.next;
+            }
+            return stringifiedListValues+'null'
+        }
+    }
+    return {getHead, getTail, getSize, append, prepend, pop, contains, find, toString, getElementByIndex};
 }

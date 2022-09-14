@@ -97,7 +97,28 @@ const LinkedList = function(){
         }
     }
     function contains(value){
-        
+        if(size==0){
+            return false;
+        }
+        else{
+            if(tail.value === value){
+                return true;
+            }
+            else{
+                let currentElement = head;
+                while(true){
+                    if(currentElement.value === value){
+                        return true;
+                    }
+                    else{
+                        currentElement = currentElement.next;
+                        if(currentElement === null){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
     }
-    return {getHead, getTail, getSize, append, prepend, pop, getElementByIndex}
+    return {getHead, getTail, getSize, append, prepend, pop, contains, getElementByIndex}
 }
